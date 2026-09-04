@@ -94,7 +94,7 @@ A curva Precision-Recall é especialmente útil neste contexto porque accuracy i
 
 ## Instalação
 
-Crie um ambiente virtual e instale as dependências:
+Crie um ambiente virtual:
 
 ```bash
 python -m venv .venv
@@ -112,10 +112,10 @@ Linux/macOS:
 source .venv/bin/activate
 ```
 
-Instale os pacotes:
+Instale as dependências versionadas no repositório:
 
 ```bash
-pip install pandas numpy matplotlib seaborn scikit-learn imbalanced-learn xgboost
+pip install -r requirements.txt
 ```
 
 ## Execução
@@ -126,14 +126,32 @@ python main.py
 
 O script baixa o dataset, treina o modelo e exibe os relatórios e gráficos de avaliação.
 
+## Organização do ambiente
+
+O repositório agora inclui:
+
+```text
+requirements.txt  # dependências Python do experimento
+.gitignore        # evita novos ambientes virtuais e artefatos locais
+main.py           # pipeline completo
+```
+
+> Observação: uma pasta `.venv` antiga ainda pode existir no histórico/estado atual do repositório. O novo `.gitignore` impede que novos arquivos do ambiente local sejam adicionados por engano.
+
 ## Limitações
 
-Este projeto é um estudo de Machine Learning e não deve ser tratado como um motor antifraude pronto para produção. Um sistema real exigiria, entre outros pontos, validação temporal, calibração de threshold, monitoramento de drift, tratamento de custo de falsos positivos/falsos negativos e controles de segurança e auditoria.
+Este projeto é um estudo de Machine Learning e não deve ser tratado como um motor antifraude pronto para produção. Um sistema real exigiria, entre outros pontos:
+
+- validação temporal;
+- calibração de threshold;
+- monitoramento de drift;
+- custo explícito de falsos positivos/falsos negativos;
+- validação em dados externos;
+- controles de segurança, explicabilidade e auditoria.
 
 ## Próximas melhorias
 
 - transformar o pipeline em módulos reutilizáveis;
-- adicionar `requirements.txt` ou `pyproject.toml`;
 - incluir validação cruzada e comparação entre modelos;
 - otimizar o threshold de decisão com base em Precision/Recall;
 - salvar métricas e gráficos como artefatos reproduzíveis;
